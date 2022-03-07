@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="py-5 d-flex justify-content-center">
+    <div class="card">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button
+          (click)="setType(1)"
+          type="button"
+          class="btn px-4 text-capitalize"
+          [class]="!type ? 'btn-outline-primary' : 'btn-primary'"
+        >
+          answered questions - ({{ answeredQuestions.length }})
+        </button>
+        <button
+          (click)="setType(0)"
+          type="button"
+          class="btn px-4 text-capitalize"
+          [class]="type ? 'btn-outline-primary' : 'btn-primary'"
+        >
+          unanswered questions - ({{ unansweredQuestions.length }})
+        </button>
+      </div>
+      <div class="p-3 pb-0 border flex-grow-1">
+        <questions-tab
+          [type]="type"
+          [questions]="type ? answeredQuestions : unansweredQuestions"
+        >
+        </questions-tab>
+      </div>
+    </div>
+  </div>
+</div>

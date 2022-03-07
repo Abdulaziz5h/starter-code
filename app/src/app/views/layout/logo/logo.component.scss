@@ -1,0 +1,21 @@
+.navbar-brand {
+  font-size: 24px;
+  .logo {
+    box-shadow: 0 0 20px #21212140;
+    padding: .5rem;
+    border-radius: 8%;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &.light {
+      background: #fff;
+      color: #212121;
+    }
+    &.dark {
+      background: #212121;
+      color: #fff;
+    }
+  }
+}

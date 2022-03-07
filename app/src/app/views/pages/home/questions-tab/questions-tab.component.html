@@ -1,0 +1,7 @@
+<ul class="list-unstyled p-0 m-0">
+  <question-card
+    *ngFor="let question of questions"
+    [question]="question"
+    [author]="getAuthor(question.author)"
+  ></question-card>
+</ul>

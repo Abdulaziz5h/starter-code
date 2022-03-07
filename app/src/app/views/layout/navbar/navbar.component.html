@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <logo></logo>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            routerLink="/"
+            [ngClass]="{active: isActive('/')}"
+            aria-current="page"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/add"
+            [ngClass]="{active: isActive('/add')}"
+            >new question</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/leaderboard"
+            [ngClass]="{active: isActive('/leaderboard')}"
+            >leaderboard</a
+          >
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center" *ngIf="user">
+        <li class="nav-item">
+          <a class="nav-link">
+            Hellow, {{user.name}}
+            <img
+              width="35"
+              height="35"
+              class="ms-2"
+              src="https://randomuser.me/api/portraits/men/3.jpg"
+              alt=""
+            />
+          </a>
+        </li>
+        <span class="siparator">|</span>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()">logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

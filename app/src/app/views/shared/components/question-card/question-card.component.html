@@ -1,0 +1,17 @@
+<li class="mb-3">
+  <div class="card">
+    <div class="card-header">
+      {{author.name}} Asks
+    </div>
+    <div class="card-body d-flex">
+      <img [src]="author.avatarURL" [alt]="author.name" width="120px" style="object-fit: cover;">
+      <div class="flex-grow-1 ms-3">
+        <h5>would you rather</h5>
+        <p class="mb-2">{{question[answerType.optionOne].text}}</p>
+        <p>{{question[answerType.optionTwo].text}}</p>
+        <button class="btn btn-primary d-block w-100">view poll</button>
+      </div>
+    </div>
+  </div>
+</li>
+{{ log() }}
