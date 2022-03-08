@@ -1,6 +1,7 @@
 import { AnswerType } from '@app/_enum/answerType.enum';
 import { IQuestion } from '@app/_models/IQuestion';
 import { Component, Input } from '@angular/core';
+import { round10 } from '@app/utils';
 
 @Component({
   selector: 'question-progress',
@@ -22,11 +23,12 @@ export class QuestionProgressComponent {
     );
   }
   getProgress(option: AnswerType) {
-    return Math.floor(
+    return round10(
       (this.question[option].votes!.length /
         (this.question[AnswerType.optionOne].votes!.length +
           this.question[AnswerType.optionTwo].votes!.length)) *
-        100
+        100,
+      -1
     );
   }
 }
