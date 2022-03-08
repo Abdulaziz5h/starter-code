@@ -1,3 +1,4 @@
+import { UserService } from '@app/services/user.service';
 import { AlertService } from './services/alert.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,7 @@ import { NavbarComponent } from './views/layout/navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AlertService],
+  providers: [AlertService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,7 +1,14 @@
 <ul class="list-unstyled p-0 m-0">
-  <question-card
-    *ngFor="let question of questions"
-    [question]="question"
-    [author]="getAuthor(question.author)"
-  ></question-card>
+  <li class="mb-3 text-capitalize text-center" *ngIf="!questions.length else questionsList">
+    no questions to show
+  </li>
+  <ng-template #questionsList>
+    <li class="mb-3" *ngFor="let question of questions">
+      <question-card
+        [question]="question"
+        [author]="getAuthor(question.author)"
+        (viewPoll)="details($event)"
+      ></question-card>
+    </li>
+  </ng-template>
 </ul>

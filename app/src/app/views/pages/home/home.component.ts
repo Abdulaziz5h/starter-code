@@ -2,7 +2,7 @@ import { IUser } from '@app/_models/IUser';
 import { UserService } from '@app/services/user.service';
 import { IQuestion } from '@app/_models/IQuestion';
 import { QuestionsService } from '@app/services/question.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   templateUrl: './home.component.html',

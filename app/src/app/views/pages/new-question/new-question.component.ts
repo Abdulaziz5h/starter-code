@@ -24,7 +24,6 @@ export class NewQuestionComponent {
 
   saveQuestion(value: any) {
     if (this.questionForm.valid) {
-      console.log(value);
       const question: {
         optionOneText: string;
         optionTwoText: string;

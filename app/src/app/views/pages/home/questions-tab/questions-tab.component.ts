@@ -1,12 +1,8 @@
+import { Router } from '@angular/router';
 import { UserService } from '@app/services/user.service';
 import { IUser } from '@app/_models/IUser';
 import { IQuestion } from '@app/_models/IQuestion';
-import {
-  Component,
-  OnInit,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'questions-tab',
@@ -19,13 +15,15 @@ export class QuestionsTabComponent {
   @Input() questions: IQuestion[] = [];
   users: IUser[] = [];
 
-  constructor(private _us: UserService) {
+  constructor(private _us: UserService, private router: Router) {
     this._us.fetchUsers().then((users) => {
       this.users = <IUser[]>users;
     });
   }
-
   getAuthor(authorId: string): IUser {
-    return <IUser>this.users.find((u) => u.id == authorId);
+    return this._us.getUserById(authorId);
+  }
+  details(qId: string) {
+    this.router.navigate(['/questions/' + qId]);
   }
 }

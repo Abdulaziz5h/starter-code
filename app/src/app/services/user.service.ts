@@ -1,3 +1,4 @@
+import { AnswerType } from './../_enum/answerType.enum';
 import { AlertService } from './alert.service';
 import { Router } from '@angular/router';
 import { IUser } from '@app/_models/IUser';
@@ -11,9 +12,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class UserService {
   _users: { [key: string]: IUser } = {};
   userSubject: Subject<IUser | null> = new Subject<IUser | null>();
@@ -34,6 +33,19 @@ export class UserService {
       });
     }
   }
+  getUserById(id: string) {
+    return this._users[id];
+  }
+  updateUserAnsers(q: { authedUser: string; qId: string; ans: string }) {
+    this._users[q.authedUser] = {
+      ...this._users[q.authedUser],
+      answers: {
+        ...this._users[q.authedUser].answers,
+        [q.qId]: <AnswerType>q.ans,
+      },
+    };
+    this.user = this._users[q.authedUser];
+  }
   login(userId: any) {
     _login(<IUser>this._users[userId]).then(() => {
       this.getCurrestUser();
@@ -50,7 +62,7 @@ export class UserService {
       this.userSubject.next(null);
       this._as.alert({
         type: 'success',
-        message: 'logged out successfully!'
+        message: 'logged out successfully!',
       });
     });
   }

@@ -14,6 +14,10 @@ export const saveQuestion = (question: {
 }) => {
   return _saveQuestion(question);
 };
-export const saveQuestionAnswer = () => {
-  return _saveQuestionAnswer();
+export const saveQuestionAnswer = (question: {
+  authedUser: string;
+  qid: string;
+  answer: string;
+}) => {
+  return _saveQuestionAnswer(question);
 };

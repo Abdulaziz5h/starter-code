@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
@@ -7,7 +8,7 @@ import { QuestionCardComponent } from './components/question-card/question-card.
 
 @NgModule({
   declarations: [LogoComponent, QuestionCardComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   exports: [CommonModule, LogoComponent, QuestionCardComponent],
 })
 export class SharedModule {}
