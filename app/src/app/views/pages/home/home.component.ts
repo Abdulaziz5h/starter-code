@@ -8,30 +8,23 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   type = 0;
   user!: IUser;
   _questionsList: IQuestion[] = [];
   constructor(private _qs: QuestionsService, private _us: UserService) {
-    this._us.user.subscribe((user) => {
-      this.user = <IUser>user;
-      this._qs.fetchQuestions().then((questions) => {
-        this._questionsList = <IQuestion[]>questions;
-      });
+    this._qs.fetchQuestions().then((questions) => {
+      this._questionsList = <IQuestion[]>questions;
     });
-  }
-
-  ngOnInit() {
-    this._us.getCurrestUser();
   }
   get answeredQuestions() {
     return this._questionsList.filter(
-      (q) => Object.keys(this.user.answers).indexOf(q.id) != -1
+      (q) => Object.keys(this._us.user.answers).indexOf(q.id) != -1
     );
   }
   get unansweredQuestions() {
     return this._questionsList.filter(
-      (q) => Object.keys(this.user.answers).indexOf(q.id) == -1
+      (q) => Object.keys(this._us.user.answers).indexOf(q.id) == -1
     );
   }
   setType(v: number) {

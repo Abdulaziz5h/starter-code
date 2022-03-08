@@ -1,6 +1,9 @@
 <div>
   <header>
     <navbar></navbar>
+    <div class="alert" [class]="'alert-' + alert.type" *ngIf="alert.active">
+      {{ alert.message }} <i (click)="closeAlert()" class="mdi mdi-close ms-2"></i>
+    </div>
   </header>
   <main>
     <div class="container">

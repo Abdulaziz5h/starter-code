@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   user!: IUser | null;
   constructor(private router: Router, private _us: UserService) {
-    this._us.user.subscribe((user) => {
+    this._us.userSubject.subscribe((user) => {
       this.user = user;
     });
   }
