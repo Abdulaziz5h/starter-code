@@ -34,6 +34,10 @@ const routes: Routes = [
       import('./views/auth/auth.module').then((m) => m.AuthModule),
   },
   {
+    path: 'page-not-found',
+    component: NotFoundPageComponent,
+  },
+  {
     path: '**',
     component: NotFoundPageComponent,
   },

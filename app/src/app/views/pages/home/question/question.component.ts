@@ -41,7 +41,7 @@ export class QuestionComponent implements OnInit {
         this._qs.fetchQuestions().then(() => {
           this.question = this._qs.getQuestionById(id);
           if (!this.question) {
-            this.goHome();
+            this.go4o4();
           } else {
             this.user = this._us.getUserById(this.question.author);
           }
@@ -50,14 +50,14 @@ export class QuestionComponent implements OnInit {
     } else {
       this.question = this._qs.getQuestionById(id);
       if (!this.question) {
-        this.goHome();
+        this.go4o4();
       } else {
         this.user = this._us.getUserById(this.question.author);
       }
     }
   }
-  goHome() {
-    this.router.navigate(['/']);
+  go4o4() {
+    this.router.navigate(['/page-not-found']);
   }
   saveAnswer(ans: string) {
     this._qs

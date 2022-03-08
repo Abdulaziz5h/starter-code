@@ -25,7 +25,7 @@ export class QuestionCardComponent {
   answerType = AnswerType;
 
   form: FormGroup = new FormGroup({
-    answerType: new FormControl(AnswerType.optionTwo),
+    answerType: new FormControl(AnswerType.optionOne),
   });
 
   constructor(private _us: UserService) {}
