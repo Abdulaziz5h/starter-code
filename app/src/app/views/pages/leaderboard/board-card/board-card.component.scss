@@ -1,0 +1,21 @@
+.award {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 40px;
+  height: 40px;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  background: #eee;
+  padding: 0 0 0 2px;
+  font-size: 18px;
+}
+.gold {
+  color: gold;
+}
+.silver {
+  color: silver;
+}
+.bronze {
+  color: rgb(170, 114, 29);
+}

@@ -1,12 +1,10 @@
-<div class="container py-5">
-  <div style="max-width: 500px" class="mx-auto">
-    <question-card
-      [isAction]="true"
-      [isAnswered]="isAnswered(question.id)"
-      [question]="question"
-      [author]="user"
-      (viewPoll)="saveAnswer($event)"
-    >
-    </question-card>
-  </div>
+<div style="max-width: 500px" class="mx-auto">
+  <question-card
+    [isAction]="true"
+    [isAnswered]="isAnswered(question.id)"
+    [question]="question"
+    [author]="user"
+    (viewPoll)="saveAnswer($event)"
+  >
+  </question-card>
 </div>

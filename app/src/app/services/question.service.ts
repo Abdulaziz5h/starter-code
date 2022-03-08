@@ -1,6 +1,7 @@
+import { LoadingService } from './../views/layout/loading/loading.service';
 import { UserService } from '@app/services/user.service';
-import { AnswerType } from './../_enum/answerType.enum';
-import { IQuestion } from './../_models/IQuestion';
+import { AnswerType } from '@app/_enum/answerType.enum';
+import { IQuestion } from '@app/_models/IQuestion';
 import {
   fetchQuestions,
   saveQuestion,
@@ -12,7 +13,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class QuestionsService {
-  constructor(private _us: UserService) {}
+  constructor(private _us: UserService, private _ls: LoadingService) {}
   _questions: { [key: string]: IQuestion } = {};
   get questions(): IQuestion[] {
     return <Array<IQuestion>>(
@@ -20,13 +21,16 @@ export class QuestionsService {
     );
   }
   async fetchQuestions() {
+    this._ls.reset();
     if (!this.questions.length) {
       return fetchQuestions().then((data) => {
+        this._ls.loaded(100);
         this._questions = data;
         return this.questions;
       });
     } else {
       return new Promise((res, rej) => {
+        this._ls.loaded(100);
         res(this.questions);
       });
     }
@@ -39,19 +43,24 @@ export class QuestionsService {
     optionTwoText: string;
     author: string;
   }): any {
+    this._ls.reset();
     return saveQuestion(question).then((data: IQuestion) => {
+      this._ls.loaded(100);
       this._questions = {
         [data.id]: data,
         ...this._questions,
       };
+      return data;
     });
   }
-  saveQuestionAnswer(question: {
+  async saveQuestionAnswer(question: {
     authedUser: string;
     qid: string;
     answer: string;
   }) {
+    this._ls.reset();
     return saveQuestionAnswer(question).then((data) => {
+      this._ls.loaded(100);
       const answers =
         this._questions[question.qid][<AnswerType>question.answer];
       answers.votes = [question.authedUser, ...answers.votes!];
@@ -60,6 +69,7 @@ export class QuestionsService {
         ans: question.answer,
         qId: question.qid,
       });
+      return true;
     });
   }
 }

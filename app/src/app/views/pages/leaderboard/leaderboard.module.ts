@@ -1,8 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { LeaderboardRoutingModule } from './leaderboard-routing.module';
+import {
+  LeaderboardRoutingModule,
+  components,
+} from './leaderboard-routing.module';
 
 @NgModule({
-  imports: [LeaderboardRoutingModule],
+  declarations: [...components],
+  imports: [LeaderboardRoutingModule, CommonModule],
+  exports: [components[0]],
 })
 export class LeaderboardModule {}

@@ -1,3 +1,4 @@
+import { LoadingService } from './../loading/loading.service';
 import { IUser } from './../../../_models/IUser';
 import { UserService } from '@app/services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,10 +11,18 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   user!: IUser | null;
-  constructor(private router: Router, private _us: UserService) {
+  loaded: number = 100;
+  constructor(
+    private router: Router,
+    private _us: UserService,
+    private _ls: LoadingService
+  ) {
     this._us.userSubject.subscribe((user) => {
       this.user = user;
     });
+    this._ls._progressSubject.subscribe((p) => {
+      this.loaded = p;
+    })
   }
   ngOnInit() {
     this._us.getCurrestUser();

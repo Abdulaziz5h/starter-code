@@ -4,45 +4,64 @@
     <img
       [src]="author?.avatarURL"
       [alt]="author?.name"
+      class="rounded"
       width="120px"
+      height="140px"
       style="object-fit: cover"
     />
     <div class="flex-grow-1 ms-3">
-      <h5>would you rather</h5>
-      <form [formGroup]="form">
-        <div class="mb-3" [ngClass]="{ 'form-check': isAction }">
-          <input
-            *ngIf="isAction"
-            class="form-check-input"
-            type="radio"
-            formControlName="answerType"
-            [value]="answerType.optionOne"
-            name="answerType"
-            [id]="answerType.optionOne"
-          />
-          <label class="form-check-label" [for]="answerType.optionOne">
-            {{ question[answerType.optionOne].text }}
-          </label>
-        </div>
-        <div class="mb-3" [ngClass]="{ 'form-check': isAction }">
-          <input
-            *ngIf="isAction"
-            class="form-check-input"
-            formControlName="answerType"
-            type="radio"
-            [value]="answerType.optionTwo"
-            name="answerType"
-            [id]="answerType.optionTwo"
-            checked
-          />
-          <label class="form-check-label" [for]="answerType.optionTwo">
-            {{ question[answerType.optionTwo].text }}
-          </label>
-        </div>
-      </form>
-      <button class="btn btn-primary d-block w-100" (click)="viewPollClick()">
-        view poll
-      </button>
+      <ng-container *ngIf="isAnswered; else unanswerd">
+        <h5>Result:</h5>
+        <question-progress
+          [question]="question"
+          [option]="answerType.optionOne"
+          [isSelected]="isSelected(answerType.optionOne)"
+        >
+        </question-progress>
+        <question-progress
+          [question]="question"
+          [option]="answerType.optionTwo"
+          [isSelected]="isSelected(answerType.optionTwo)"
+        >
+        </question-progress>
+      </ng-container>
+      <ng-template #unanswerd>
+        <h5 class="text-capitalize">would you rather</h5>
+        <form [formGroup]="form">
+          <div class="mb-3" [ngClass]="{ 'form-check': isAction }">
+            <input
+              *ngIf="isAction"
+              class="form-check-input"
+              type="radio"
+              formControlName="answerType"
+              [value]="answerType.optionOne"
+              name="answerType"
+              [id]="answerType.optionOne"
+            />
+            <label class="form-check-label" [for]="answerType.optionOne">
+              {{ question[answerType.optionOne].text }}
+            </label>
+          </div>
+          <div class="mb-3" [ngClass]="{ 'form-check': isAction }">
+            <input
+              *ngIf="isAction"
+              class="form-check-input"
+              formControlName="answerType"
+              type="radio"
+              [value]="answerType.optionTwo"
+              name="answerType"
+              [id]="answerType.optionTwo"
+              checked
+            />
+            <label class="form-check-label" [for]="answerType.optionTwo">
+              {{ question[answerType.optionTwo].text }}
+            </label>
+          </div>
+        </form>
+        <button class="btn btn-primary d-block w-100 text-capitalize" (click)="viewPollClick()">
+          view poll
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>

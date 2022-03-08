@@ -9,9 +9,16 @@ import { SharedModule } from './views/shared/shared.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './views/layout/navbar/navbar.component';
+import { LoadingComponent } from './views/layout/loading/loading.component';
+import { LoadingService } from './views/layout/loading/loading.service';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, ...components],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    ...components,
+    LoadingComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,7 +26,7 @@ import { NavbarComponent } from './views/layout/navbar/navbar.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AlertService, UserService],
+  providers: [LoadingService, AlertService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

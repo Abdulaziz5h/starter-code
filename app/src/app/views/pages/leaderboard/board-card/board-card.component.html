@@ -1,0 +1,35 @@
+<div class="card mb-3">
+  <div class="card-body d-flex ps-4">
+    <div class="award">
+      <i class="mdi mdi-trophy-award" [class]="getOrderClass(order)"></i>
+    </div>
+    <img
+      [src]="user?.avatarURL"
+      [alt]="user?.name"
+      class="rounded"
+      width="100px"
+      height="120px"
+      style="object-fit: cover"
+    />
+    <div class="flex-grow-1 mx-3 py-3">
+      <h5>{{ user.name }}</h5>
+      <p class="m-0 d-flex justify-content-between text-secondary">
+        Answered Questions
+        <strong>{{getAnsweredQuestionsCount(user)}}</strong>
+      </p>
+      <hr class="my-1" />
+      <p class="m-0 d-flex justify-content-between text-secondary">
+        Crated Questions
+        <strong>{{ user.questions.length }}</strong>
+      </p>
+    </div>
+    <div style="width: 80px">
+      <div class="card h-100">
+        <div class="card-header text-center"><strong>Score</strong></div>
+        <div class="card-body d-flex justify-content-center align-items-center">
+          <h3 class="m-0">{{ getAnswersCount(user) }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

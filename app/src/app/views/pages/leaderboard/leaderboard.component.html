@@ -1,3 +1,5 @@
-<p>
-  leadership works!
-</p>
+<ul class="list-unstyled p-0 mx-auto" style="max-width: 600px">
+  <li *ngFor="let user of users; index as i">
+    <board-card [user]="user" [order]="i + 1"></board-card>
+  </li>
+</ul>

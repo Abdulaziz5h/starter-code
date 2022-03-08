@@ -1,3 +1,4 @@
+import { UserService } from '@app/services/user.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { IUser } from '@app/_models/IUser';
 import { AnswerType } from '@app/_enum/answerType.enum';
@@ -27,11 +28,15 @@ export class QuestionCardComponent {
     answerType: new FormControl(AnswerType.optionTwo),
   });
 
-  constructor() {}
+  constructor(private _us: UserService) {}
 
   viewPollClick() {
     this.viewPoll.emit(
       !this.isAction ? this.question.id : this.form.value.answerType
     );
+  }
+  isSelected(option: AnswerType) {
+    console.log(this._us.user.answers[this.question.id], option)
+    return this._us.user.answers[this.question.id] == option;
   }
 }

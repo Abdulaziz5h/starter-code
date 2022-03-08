@@ -1,26 +1,24 @@
-<div class="py-5">
-  <div class="card mx-auto" style="max-width: 400px">
-    <div class="card-body text-center">
-      <logo [theme]="'dark'" [scale]="4" [virtical]="true"> </logo>
-      <p class="text-secondary fw-bolder mb-4">Please Sign in to continue</p>
-      <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-        <div class="mb-3">
-          <select class="form-select" id="user" formControlName="user">
-            <option [value]="user.id" *ngFor="let user of users">
-              {{ user.name }}
-            </option>
-          </select>
-          <div
-            *ngIf="user.invalid && (user.dirty || user.touched)"
-            class="text-danger"
-          >
-            <div *ngIf="user.errors?.['required']">User is required.</div>
-          </div>
+<div class="card mx-auto" style="max-width: 400px">
+  <div class="card-body text-center">
+    <logo [theme]="'dark'" [scale]="4" [virtical]="true"> </logo>
+    <p class="text-secondary fw-bolder mb-4">Please Sign in to continue</p>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+      <div class="mb-3">
+        <select class="form-select" id="user" formControlName="user">
+          <option [value]="user.id" *ngFor="let user of users">
+            {{ user.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="user.invalid && (user.dirty || user.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="user.errors?.['required']">User is required.</div>
         </div>
-        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary d-block w-100">
-          Login
-        </button>
-      </form>
-    </div>
+      </div>
+      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary d-block w-100">
+        Login
+      </button>
+    </form>
   </div>
 </div>

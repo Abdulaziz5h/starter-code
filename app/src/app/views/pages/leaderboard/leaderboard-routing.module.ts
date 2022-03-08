@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { LeadershipComponent } from './leaderboard.component';
+import { LeaderboardComponent } from './leaderboard.component';
+import { BoardCardComponent } from './board-card/board-card.component';
 
 @NgModule({
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: LeadershipComponent,
+        component: LeaderboardComponent,
       },
     ]),
   ],
 })
 export class LeaderboardRoutingModule {}
+export const components = [BoardCardComponent, LeaderboardComponent]

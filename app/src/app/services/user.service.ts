@@ -1,3 +1,4 @@
+import { LoadingService } from './../views/layout/loading/loading.service';
 import { AnswerType } from './../_enum/answerType.enum';
 import { AlertService } from './alert.service';
 import { Router } from '@angular/router';
@@ -17,18 +18,25 @@ export class UserService {
   _users: { [key: string]: IUser } = {};
   userSubject: Subject<IUser | null> = new Subject<IUser | null>();
   user!: IUser;
-  constructor(private router: Router, private _as: AlertService) {}
+  constructor(
+    private router: Router,
+    private _as: AlertService,
+    private _ls: LoadingService
+  ) {}
   get users(): Array<IUser> {
     return <Array<IUser>>Object.keys(this._users).map((k) => this._users[k]);
   }
   async fetchUsers() {
+    this._ls.reset();
     if (!this.users.length) {
       return fetchUsers().then((data) => {
+        this._ls.loaded(100);
         this._users = data;
         return this.users;
       });
     } else {
       return new Promise((res, rej) => {
+        this._ls.loaded(100);
         res(this.users);
       });
     }

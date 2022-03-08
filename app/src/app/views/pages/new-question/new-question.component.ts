@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AlertService } from './../../../services/alert.service';
 import { IAnswer } from './../../../_models/IAnswer';
 import { UserService } from '@app/services/user.service';
@@ -19,7 +20,8 @@ export class NewQuestionComponent {
   constructor(
     private _qs: QuestionsService,
     private _us: UserService,
-    private _as: AlertService
+    private _as: AlertService,
+    private router: Router
   ) {}
 
   saveQuestion(value: any) {
@@ -33,7 +35,13 @@ export class NewQuestionComponent {
         optionOneText: value[AnswerType.optionOne],
         optionTwoText: value[AnswerType.optionTwo],
       };
-      this._qs.saveQuestion(question);
+      this._qs.saveQuestion(question).then(() => {
+        this._as.alert({
+          type: 'success',
+          message: 'your question added successfuliy!',
+        });
+        this.router.navigate(['/']);
+      });
     } else {
       this._as.alert({
         type: 'danger',

@@ -12,7 +12,7 @@ import { QuestionComponent } from './question/question.component';
         component: HomeComponent,
       },
       {
-        path: 'questions/:id',
+        path: 'questions/:question_id',
         component: QuestionComponent
       }
     ]),
