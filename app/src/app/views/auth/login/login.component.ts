@@ -1,7 +1,12 @@
-import { IUser } from '@app/_models/IUser';
-import { UserService } from '@app/services/user.service';
+import { getAllUsers } from '@app/store/users/actions';
+import { getUsers } from '@app/store/users/selectors';
+import { AppState } from '@app/store/app.state';
+import { Observable } from 'rxjs';
+import { IUser } from '@app/_models/IUser.interface';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { loginStart } from '@app/store/auth/actions';
 
 @Component({
   selector: 'login',
@@ -9,20 +14,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  users: Array<IUser> = [];
+  users$?: Observable<IUser[]>;
   loginForm: FormGroup = new FormGroup({
-    user: new FormControl(null, Validators.required),
+    userId: new FormControl(null, Validators.required),
   });
-  constructor(private _us: UserService) {}
+  constructor(private store: Store<AppState>) {
+    this.store.dispatch(getAllUsers());
+  }
   ngOnInit() {
-    this._us.fetchUsers().then((data) => {
-      this.users = <IUser[]>data;
-    });
+    this.users$ = this.store.select(getUsers);
   }
   get user() {
-    return this.loginForm.controls['user']
+    return this.loginForm.controls['userId'];
   }
   login(v: any) {
-    this._us.login(v.user)
+    this.store.dispatch(loginStart({ id: v.userId }));
+  }
+  trackById(i: number, u: IUser) {
+    return u.id;
   }
 }

@@ -1,4 +1,4 @@
-import { IAnswer } from './IAnswer';
+import { IAnswer } from './IAnswer.interface';
 import { AnswerType } from '@app/_enum/answerType.enum';
 export interface IQuestion {
     id: string,

@@ -6,6 +6,10 @@ import { QuestionsTabComponent } from './questions-tab/questions-tab.component';
 
 @NgModule({
   declarations: [QuestionsTabComponent, ...components],
-  imports: [HomeRoutingModule, SharedModule, RouterModule],
+  imports: [
+    HomeRoutingModule,
+    SharedModule,
+    RouterModule,
+  ],
 })
 export class HomeModule {}

@@ -4,7 +4,7 @@
       <button
         (click)="setType(1)"
         type="button"
-        class="btn px-4 text-capitalize"
+        class="btn px-5 text-capitalize"
         [class]="!type ? 'btn-outline-primary' : 'btn-primary'"
       >
         answered questions - ({{ answeredQuestions.length }})
@@ -12,7 +12,7 @@
       <button
         (click)="setType(0)"
         type="button"
-        class="btn px-4 text-capitalize"
+        class="btn px-md-5 text-capitalize"
         [class]="type ? 'btn-outline-primary' : 'btn-primary'"
       >
         unanswered questions - ({{ unansweredQuestions.length }})

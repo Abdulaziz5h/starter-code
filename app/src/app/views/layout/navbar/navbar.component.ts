@@ -1,8 +1,11 @@
-import { LoadingService } from './../loading/loading.service';
-import { IUser } from './../../../_models/IUser';
-import { UserService } from '@app/services/user.service';
+import { authinticatedUser } from '@app/store/auth/selector';
+import { isLoadingSelector } from '@app/store/shared/selector';
+import { Store } from '@ngrx/store';
+import { IUser } from '@app/_models/IUser.interface';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppState } from '@app/store/app.state';
+import { logout } from '@app/store/auth/actions';
 
 @Component({
   selector: 'navbar',
@@ -10,27 +13,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  user!: IUser | null;
-  loaded: number = 100;
-  constructor(
-    private router: Router,
-    private _us: UserService,
-    private _ls: LoadingService
-  ) {
-    this._us.userSubject.subscribe((user) => {
-      this.user = user;
+  user: IUser = <IUser>{};
+  isLoading: boolean = false;
+  constructor(private router: Router, private store: Store<AppState>) {
+    this.store.select(isLoadingSelector).subscribe((is) => {
+      this.isLoading = is;
     });
-    this._ls._progressSubject.subscribe((p) => {
-      this.loaded = p;
-    })
+    this.store.select(authinticatedUser).subscribe((u) => {
+      this.user = <IUser>u;
+    });
   }
-  ngOnInit() {
-    this._us.getCurrestUser();
-  }
+  ngOnInit() {}
   isActive(path: string) {
     return this.router.url == path;
   }
   logout() {
-    this._us.logout();
+    this.store.dispatch(logout());
   }
 }

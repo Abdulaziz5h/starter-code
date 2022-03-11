@@ -1,0 +1,52 @@
+<div class="card mx-auto" style="max-width: 400px">
+  <div class="card-body text-center">
+    <logo [theme]="'dark'" [scale]="4" [virtical]="true"> </logo>
+    <p class="text-secondary fw-bolder mb-4">you are welcome on polling</p>
+    <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
+      <div class="mb-3 text-start">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          formControlName="name"
+        />
+        <div
+          *ngIf="name.invalid && (name.dirty || name.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="name.errors?.['required']">name is required.</div>
+        </div>
+      </div>
+      <div class="mb-3 text-start">
+        <label for="avatar">Avatar</label>
+        <input
+          type="text"
+          id="avatar"
+          class="form-control"
+          formControlName="avatar"
+        />
+        <div
+          *ngIf="avatar.invalid && (avatar.dirty || avatar.touched)"
+          class="text-danger"
+        >
+          <div *ngIf="avatar.errors?.['required']">avatar is required.</div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="!signupForm.valid"
+        class="btn btn-primary d-block w-100 mb-3"
+      >
+        Signup
+      </button>
+      <button
+        type="button"
+        [routerLink]="'/login'"
+        class="btn btn-outline-primary d-block w-100"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>

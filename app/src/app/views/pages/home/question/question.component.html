@@ -3,7 +3,7 @@
     [isAction]="true"
     [isAnswered]="isAnswered(question.id)"
     [question]="question"
-    [author]="user"
+    [author]="user$"
     (viewPoll)="saveAnswer($event)"
   >
   </question-card>

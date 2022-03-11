@@ -1,3 +1,8 @@
+Use this Api to get fake users avatars
+https://randomuser.me/api/portraits/[men | women]/${number}.jpg
+
+Note: About the signup logic. In case we login with new user and then refresh. The application will registers new user with the lastest which stored user data and all other users will be removed.
+
 # App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.2.

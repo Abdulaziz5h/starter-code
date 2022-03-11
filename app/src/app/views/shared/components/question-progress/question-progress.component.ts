@@ -1,5 +1,5 @@
 import { AnswerType } from '@app/_enum/answerType.enum';
-import { IQuestion } from '@app/_models/IQuestion';
+import { IQuestion } from '@app/_models/IQuestion.interface';
 import { Component, Input } from '@angular/core';
 import { round10 } from '@app/utils';
 
@@ -16,17 +16,17 @@ export class QuestionProgressComponent {
   constructor() {}
   getText(option: AnswerType) {
     return (
-      this.question[option].votes?.length +
+      (this.question[option].votes || []).length +
       ' out of ' +
-      (this.question[AnswerType.optionOne].votes!.length +
-        this.question[AnswerType.optionTwo].votes!.length)
+      ((this.question[AnswerType.optionOne].votes || []).length +
+        (this.question[AnswerType.optionTwo].votes || []).length)
     );
   }
   getProgress(option: AnswerType) {
     return round10(
-      (this.question[option].votes!.length /
-        (this.question[AnswerType.optionOne].votes!.length +
-          this.question[AnswerType.optionTwo].votes!.length)) *
+      ((this.question[option].votes || []).length /
+        ((this.question[AnswerType.optionOne].votes || []).length +
+          (this.question[AnswerType.optionTwo].votes || []).length)) *
         100,
       -1
     );

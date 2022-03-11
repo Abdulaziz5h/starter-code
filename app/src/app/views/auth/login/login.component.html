@@ -4,20 +4,31 @@
     <p class="text-secondary fw-bolder mb-4">Please Sign in to continue</p>
     <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
       <div class="mb-3">
-        <select class="form-select" id="user" formControlName="user">
-          <option [value]="user.id" *ngFor="let user of users">
+        <select class="form-select" id="userId" formControlName="userId">
+          <option [value]="user.id" *ngFor="let user of users$ | async; index as i; trackBy: trackById">
             {{ user.name }}
           </option>
         </select>
         <div
           *ngIf="user.invalid && (user.dirty || user.touched)"
-          class="text-danger"
+          class="text-danger text-start"
         >
           <div *ngIf="user.errors?.['required']">User is required.</div>
         </div>
       </div>
-      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary d-block w-100">
+      <button
+        type="submit"
+        [disabled]="!loginForm.valid"
+        class="btn btn-primary d-block w-100 mb-3"
+      >
         Login
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary d-block w-100"
+        [routerLink]="'/signup'"
+      >
+        Signup
       </button>
     </form>
   </div>

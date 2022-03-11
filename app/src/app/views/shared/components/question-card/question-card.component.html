@@ -1,9 +1,9 @@
 <div class="card" *ngIf="question.id">
-  <div class="card-header">{{ author?.name }} Asks</div>
+  <div class="card-header">{{ (author | async)?.name }} Asks</div>
   <div class="card-body d-flex">
     <img
-      [src]="author?.avatarURL"
-      [alt]="author?.name"
+      [src]="(author | async)?.avatarURL"
+      [alt]="(author | async)?.name"
       class="rounded"
       width="120px"
       height="140px"
@@ -58,7 +58,10 @@
             </label>
           </div>
         </form>
-        <button class="btn btn-primary d-block w-100 text-capitalize" (click)="viewPollClick()">
+        <button
+          class="btn btn-primary d-block w-100 text-capitalize"
+          (click)="viewPollClick()"
+        >
           view poll
         </button>
       </ng-template>

@@ -1,9 +1,15 @@
 <ul class="list-unstyled p-0 m-0">
-  <li class="mb-3 text-capitalize text-center" *ngIf="!questions.length else questionsList">
+  <li
+    class="mb-3 text-capitalize text-center"
+    *ngIf="!questions.length; else questionsList"
+  >
     no questions to show
   </li>
   <ng-template #questionsList>
-    <li class="mb-3" *ngFor="let question of questions">
+    <li
+      class="mb-3"
+      *ngFor="let question of sortedQuestions; index as i; trackBy: trackById"
+    >
       <question-card
         [question]="question"
         [author]="getAuthor(question.author)"

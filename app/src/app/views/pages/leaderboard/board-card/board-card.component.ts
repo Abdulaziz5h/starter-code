@@ -1,4 +1,4 @@
-import { IUser } from '@app/_models/IUser';
+import { IUser } from '@app/_models/IUser.interface';
 import {
   Component,
   OnInit,

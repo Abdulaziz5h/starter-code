@@ -8,7 +8,10 @@ import {
 
 @NgModule({
   declarations: [...components],
-  imports: [LeaderboardRoutingModule, CommonModule],
+  imports: [
+    LeaderboardRoutingModule,
+    CommonModule,
+  ],
   exports: [components[0]],
 })
 export class LeaderboardModule {}

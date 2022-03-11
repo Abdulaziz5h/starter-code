@@ -18,7 +18,7 @@
           <a
             class="nav-link active"
             routerLink="/"
-            [ngClass]="{active: isActive('/')}"
+            [ngClass]="{ active: isActive('/') }"
             aria-current="page"
             >Home</a
           >
@@ -27,7 +27,7 @@
           <a
             class="nav-link"
             routerLink="/add"
-            [ngClass]="{active: isActive('/add')}"
+            [ngClass]="{ active: isActive('/add') }"
             >new question</a
           >
         </li>
@@ -35,15 +35,18 @@
           <a
             class="nav-link"
             routerLink="/leaderboard"
-            [ngClass]="{active: isActive('/leaderboard')}"
+            [ngClass]="{ active: isActive('/leaderboard') }"
             >leaderboard</a
           >
         </li>
       </ul>
-      <ul class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center" *ngIf="user">
+      <ul
+        class="navbar-nav mb-2 mb-lg-0 d-flex align-items-center"
+        *ngIf="user"
+      >
         <li class="nav-item">
           <a class="nav-link">
-            Hellow, {{user.name}}
+            Hellow, {{ user.name }}
             <img
               width="33"
               height="33"
@@ -61,4 +64,4 @@
     </div>
   </div>
 </nav>
-<loading *ngIf="loaded < 100"></loading>
+<loading [hidden]="!isLoading"></loading>

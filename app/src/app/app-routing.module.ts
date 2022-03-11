@@ -4,7 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPageComponent } from './views/error/not-found-page/not-found-page.component';
 import { NewQuestionComponent } from './views/pages/new-question/new-question.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -29,7 +28,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'login',
+    path: '',
     loadChildren: () =>
       import('./views/auth/auth.module').then((m) => m.AuthModule),
   },
@@ -48,4 +47,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-export const components = [NewQuestionComponent, NotFoundPageComponent]
+export const components = [NewQuestionComponent, NotFoundPageComponent];
