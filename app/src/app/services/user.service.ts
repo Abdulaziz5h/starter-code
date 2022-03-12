@@ -1,4 +1,4 @@
-import { newUsers } from '@app/_actions/user.action';
+import { newUser } from '@app/_actions/user.action';
 import { fetchUsers } from '@app/_actions/user.action';
 
 import { Injectable } from '@angular/core';
@@ -12,6 +12,6 @@ export class UserService {
     return fetchUsers();
   }
   saveUser(user: any) {
-    return newUsers(user);
+    return newUser(user);
   }
 }

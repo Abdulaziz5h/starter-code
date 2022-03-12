@@ -1,3 +1,4 @@
+import { logout } from './../auth/actions';
 import { AuthService } from '@app/services/auth.service';
 import {
   signupSuccess,
@@ -29,8 +30,10 @@ export class UserEffects {
         return this._us.fetchUsers().then((users) => {
           // ----- this to fix lost API
           const currentUser = this._as.getUserData();
-          if (currentUser && !users[currentUser.id])
+          if (currentUser && !users[currentUser.id]) {
+            this.store.dispatch(logout());
             this.store.dispatch(signup(currentUser));
+          }
           // -----
           return getAllUsersSuccess({ users });
         });

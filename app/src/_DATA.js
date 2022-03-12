@@ -130,17 +130,14 @@ export function _getUsers() {
 
 function formatUser(user) {
   return {
-    id: generateUID(),
+    id: user.id || generateUID(),
     name: user.name,
     avatarURL: user.avatarURL,
-    answers: {},
-    questions: [],
-    // ----- this to fix lost API
-    ...user
-    // -----
+    answers: user.answers || {},
+    questions: user.questions || [],
   };
 }
-export function _saveUsers(user) {
+export function _saveUser(user) {
   const formatedUser = formatUser(user);
   return new Promise((res, rej) => {
     setTimeout(() => {
